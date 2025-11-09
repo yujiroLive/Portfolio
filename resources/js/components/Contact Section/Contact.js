@@ -80,25 +80,41 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:yuji.jiro21@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Reset form after a short delay
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        // Show success message
+        alert(data.message || 'Thank you for your message! I will get back to you soon.');
+        // Reset form
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        // Show error message
+        alert(data.message || 'Sorry, there was an error sending your message. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      alert('Sorry, there was an error sending your message. Please try again later.');
+    } finally {
       setIsSubmitting(false);
-    }, 500);
+    }
   };
 
   return (

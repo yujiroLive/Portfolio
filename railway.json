@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "php artisan config:clear && php artisan cache:clear && php artisan route:clear && php artisan view:clear && mkdir -p database && touch database/database.sqlite && chmod 664 database/database.sqlite && php artisan migrate --force || true && php artisan serve --host=0.0.0.0 --port=$PORT",
+    "startCommand": "php artisan config:clear && php artisan cache:clear && mkdir -p database && touch database/database.sqlite && chmod 664 database/database.sqlite && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10,
     "healthcheckPath": "/health",

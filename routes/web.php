@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Healthcheck route for Railway
+// Healthcheck route for Railway - must be before catch-all route
 Route::get('/health', function () {
-    return response()->json(['status' => 'ok'], 200);
-});
+    return response()->json(['status' => 'ok', 'timestamp' => now()], 200);
+})->middleware([]);
 
 Route::get('/{any}', function () {
     return view('welcome'); // Make sure 'welcome.blade.php' exists

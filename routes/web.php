@@ -16,15 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Healthcheck route for Railway - must be before catch-all route and not require any middleware
+// Healthcheck route for Railway - must be before catch-all route
 Route::get('/health', function () {
-    try {
-        return response()->json(['status' => 'ok', 'timestamp' => date('Y-m-d H:i:s')], 200);
-    } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
-    }
+    return response()->json([
+        'status' => 'ok',
+        'timestamp' => date('Y-m-d H:i:s'),
+        'app' => config('app.name', 'Laravel')
+    ], 200);
 });
 
+// Root route
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Catch-all route for React app
 Route::get('/{any}', function () {
-    return view('welcome'); // Make sure 'welcome.blade.php' exists
-})->where('any', '.*');
+    return view('welcome');
+})->where('any', '^(?!api|health).*$');

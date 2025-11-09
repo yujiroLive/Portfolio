@@ -17,13 +17,22 @@ use Illuminate\Support\Facades\Route;
 
 
 // Healthcheck route for Railway - must be before catch-all route
+// This route should not use any middleware that could fail
 Route::get('/health', function () {
-    return response()->json([
-        'status' => 'ok',
-        'timestamp' => date('Y-m-d H:i:s'),
-        'app' => config('app.name', 'Laravel')
-    ], 200);
-});
+    try {
+        return response()->json([
+            'status' => 'ok',
+            'timestamp' => date('Y-m-d H:i:s'),
+            'app' => config('app.name', 'Laravel'),
+            'php' => PHP_VERSION
+        ], 200)->header('Content-Type', 'application/json');
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ], 500)->header('Content-Type', 'application/json');
+    }
+})->middleware([]);
 
 // Root route
 Route::get('/', function () {

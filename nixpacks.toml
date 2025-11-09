@@ -13,9 +13,7 @@ cmds = [
   "php artisan config:clear || true",
   "php artisan cache:clear || true",
   "php artisan view:clear || true",
-  "php artisan route:clear || true",
-  "touch database/database.sqlite || true",
-  "chmod 664 database/database.sqlite || true"
+  "php artisan route:clear || true"
 ]
 
 [start]

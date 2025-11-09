@@ -65,10 +65,26 @@ export default function Hero() {
           </h1>
           {showShinyText && (
             <div className="hero-buttons">
-              <button className="hero-btn hero-btn-primary">
+              <button 
+                className="hero-btn hero-btn-primary"
+                onClick={() => {
+                  const projectSection = document.getElementById('project');
+                  if (projectSection) {
+                    projectSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 See All Projects
               </button>
-              <button className="hero-btn hero-btn-secondary">
+              <button 
+                className="hero-btn hero-btn-secondary"
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 Contact Me
               </button>
             </div>

@@ -1,0 +1,251 @@
+.about-section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  position: relative;
+  background: linear-gradient(135deg, rgba(13, 0, 25, 0.85) 0%, rgba(26, 0, 51, 0.85) 50%, rgba(36, 0, 70, 0.85) 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .about-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+
+    .about-darkveil-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .about-lightning-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.6;
+    }
+  }
+
+  .about-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-title-wrapper {
+    text-align: center;
+    margin-bottom: 4rem;
+    overflow: hidden;
+  }
+
+  .about-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+    transform-origin: center center;
+    will-change: transform, opacity;
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .about-gallery-wrapper {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin: 0;
+    padding-left: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 968px) {
+      height: 500px;
+    }
+
+    @media (max-width: 768px) {
+      height: 400px;
+    }
+
+    .circular-gallery {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .about-motto-below-gallery {
+      position: relative;
+      z-index: 10;
+      margin-top: auto;
+      padding-top: 1rem;
+      text-align: center;
+
+      h2, h3, span {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+
+      .about-description-wrapper {
+        position: relative;
+        padding: 2rem;
+
+        .about-description-content {
+          position: relative;
+        }
+
+        .about-description {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          font-size: 1.125rem;
+          font-weight: 400;
+          line-height: 1.8;
+          color: rgba(255, 255, 255, 0.9);
+          margin: 0 0 2rem 0;
+          text-align: justify;
+          text-align-last: left;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+          hyphens: auto;
+          word-break: normal;
+
+          @media (max-width: 968px) {
+            text-align: left;
+            text-align-last: left;
+            font-size: 1rem;
+          }
+        }
+
+        .about-stats-row {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 3rem;
+          margin-bottom: 2rem;
+          flex-wrap: wrap;
+
+          @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 1.5rem;
+          }
+
+          .about-stat-main,
+          .about-stat-experience {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+
+            .stat-number {
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              font-size: clamp(2.5rem, 6vw, 4rem);
+              font-weight: 800;
+              color: #fff;
+              line-height: 1;
+            }
+
+            .stat-label {
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              font-size: clamp(2.5rem, 6vw, 4rem);
+              font-weight: 800;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+              color: #fff;
+              line-height: 1;
+            }
+          }
+        }
+
+        .about-cv-button {
+          display: flex;
+          justify-content: center;
+          margin-top: 2rem;
+        }
+
+        .cv-download-btn {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          font-size: 1.125rem;
+          font-weight: 600;
+          padding: 1rem 2.5rem;
+          border: none;
+          border-radius: 12px;
+          background: linear-gradient(135deg, rgba(124, 58, 237, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+          border: 2px solid rgba(124, 58, 237, 0.5);
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 1) 0%, rgba(139, 92, 246, 1) 100%);
+            transition: left 0.3s ease;
+            z-index: 0;
+          }
+
+          span {
+            position: relative;
+            z-index: 1;
+          }
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.5);
+            border-color: rgba(124, 58, 237, 0.8);
+
+            &::before {
+              left: 0;
+            }
+          }
+
+          @media (max-width: 768px) {
+            font-size: 1rem;
+            padding: 0.875rem 2rem;
+          }
+        }
+      }
+
+}
+

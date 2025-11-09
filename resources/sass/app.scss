@@ -1,0 +1,20 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Components
+@import '../js/components/Portfolio';
+@import '../js/components/Hero Section/Hero';
+@import '../js/components/Navbar/Navbar';
+@import '../js/components/About Section/About';
+@import '../js/components/Skills Section/Skills';
+@import '../js/components/Project Section/Project';
+@import '../js/components/Design Section/Design';
+@import '../js/components/Contact Section/Contact';
+@import '../js/components/Post Wall Section/PostWall';

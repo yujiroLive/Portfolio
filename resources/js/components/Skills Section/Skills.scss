@@ -1,0 +1,243 @@
+.skills-section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  position: relative;
+  background: linear-gradient(135deg, rgba(13, 0, 25, 0.85) 0%, rgba(26, 0, 51, 0.85) 50%, rgba(36, 0, 70, 0.85) 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .skills-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.6;
+    overflow: hidden;
+  }
+
+  .skills-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .skills-title-wrapper {
+    text-align: center;
+    margin-bottom: 3rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
+
+  .skills-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+    transform-origin: center center;
+    will-change: transform, opacity;
+  }
+
+  .skills-content-wrapper {
+    margin-top: 3rem;
+  }
+
+  .skills-description {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+    p, span {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  .skills-category-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+
+    @media (max-width: 768px) {
+      gap: 1rem;
+    }
+  }
+
+  .category-btn {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    border: 2px solid rgba(124, 58, 237, 0.3);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%);
+      transition: left 0.3s ease;
+      z-index: 0;
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+      border-color: rgba(124, 58, 237, 0.5);
+
+      &::before {
+        left: 0;
+      }
+    }
+
+    &.active {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.6) 0%, rgba(139, 92, 246, 0.6) 100%);
+      border-color: rgba(124, 58, 237, 0.8);
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+
+      &::before {
+        left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
+  }
+
+  .skills-main-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 3rem;
+
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .skills-section-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    .skills-underline {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #7b2cbf 0%, #9d4edd 100%);
+      border-radius: 2px;
+    }
+  }
+
+  .skills-bar-section {
+    .skills-bar-list {
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .bar-progress {
+      margin-bottom: 2.5rem;
+    }
+
+    .skills-description-text {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: fadeInUp 0.4s ease;
+
+      p {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+        text-align: left;
+      }
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .skills-circular-section {
+    .skills-circular-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      position: relative;
+
+      .circular-skill-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.top {
+          margin-top: 0;
+        }
+
+        &.bottom {
+          margin-top: 2rem;
+
+          @media (max-width: 768px) {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+
+}
+

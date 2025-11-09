@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
 import DarkVeil from '../ReactBits/DarkVeil';
-import Lightning from '../ReactBits/Lightning';
 import './Contact.scss';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -125,20 +124,10 @@ export default function Contact() {
             hueShift={280}
             noiseIntensity={0}
             scanlineIntensity={0}
-            speed={0.5}
+            speed={0.3}
             scanlineFrequency={0}
             warpAmount={0}
             resolutionScale={1}
-          />
-        </div>
-        <div className="contact-lightning-wrapper">
-          <Lightning
-            hue={280}
-            xOffset={1.2}
-            speed={0.6}
-            intensity={1.7}
-            size={0.8}
-            useSharedTime={true}
           />
         </div>
       </div>

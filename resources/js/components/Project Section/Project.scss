@@ -17,6 +17,9 @@
     height: 100%;
     z-index: 0;
     overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 
     .project-darkveil-wrapper {
       position: absolute;

@@ -77,7 +77,7 @@ export default function Design() {
           hueShift={280}
           noiseIntensity={0.1}
           scanlineIntensity={0.2}
-          speed={0.5}
+          speed={0.3}
           scanlineFrequency={2}
           warpAmount={0.1}
           resolutionScale={1}

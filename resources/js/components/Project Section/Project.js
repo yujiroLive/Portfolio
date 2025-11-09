@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lightning from '../ReactBits/Lightning';
 import DarkVeil from '../ReactBits/DarkVeil';
 import TiltedCard from '../ReactBits/TiltedCard';
 import ShinyText from '../ReactBits/ShinyText';
+import { isMobile, isLowEndDevice } from '../../utils/performance';
 import './Project.scss';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,10 +42,16 @@ export default function Project() {
     }
   ];
 
+  const mobile = useMemo(() => isMobile(), []);
+  const lowEnd = useMemo(() => isLowEndDevice(), []);
+
   useEffect(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
     if (!section || !title) return;
+
+    // Optimize scroll trigger for mobile
+    const scrubValue = mobile ? 2 : 1; // Less smooth on mobile for performance
 
     // Title zoom in/out animation
     const tl = gsap.timeline({
@@ -53,7 +59,8 @@ export default function Project() {
         trigger: section,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 1,
+        scrub: scrubValue,
+        refreshPriority: lowEnd ? -1 : 0, // Lower priority on low-end devices
       }
     });
 
@@ -104,20 +111,12 @@ export default function Project() {
             hueShift={280}
             noiseIntensity={0}
             scanlineIntensity={0}
-            speed={0.5}
+            speed={mobile ? 0.3 : 0.4}
             scanlineFrequency={0}
             warpAmount={0}
             resolutionScale={1}
           />
         </div>
-        <Lightning
-          hue={280}
-          xOffset={1.2}
-          speed={0.6}
-          intensity={1.7}
-          size={0.8}
-          useSharedTime={true}
-        />
       </div>
       <div className="project-container">
         <div className="project-title-wrapper">

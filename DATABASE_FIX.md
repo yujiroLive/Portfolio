@@ -51,3 +51,4 @@ Go to Railway → Your Service → **Variables** tab and make sure you have:
 4. Wait for deployment
 5. Database should work!
 
+

@@ -1,0 +1,80 @@
+/* Performance Optimizations */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU acceleration for smooth animations */
+.hero-section,
+.project-section,
+.about-section,
+.skills-section,
+.contact-section,
+.post-wall-section {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize images */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize background containers */
+.hero-background,
+.project-background,
+.about-background,
+.skills-background,
+.contact-background,
+.postwall-background {
+  contain: layout style paint;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Reduce repaints */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Optimize scrolling */
+  html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Reduce animation complexity */
+  canvas,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Prevent layout shifts */
+.hero-section,
+.project-section,
+.about-section {
+  contain: layout style paint;
+}
+
+/* Optimize font loading */
+@font-face {
+  font-display: swap;
+}
+

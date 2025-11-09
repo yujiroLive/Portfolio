@@ -11,6 +11,16 @@
   background-repeat: no-repeat;
   color: #fff;
   overflow: hidden;
+  will-change: transform;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+  }
 
   .hero-background {
     position: absolute;
@@ -20,6 +30,9 @@
     height: 100%;
     z-index: 0;
     overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
     
     .hero-darkveil-wrapper {
       position: absolute;

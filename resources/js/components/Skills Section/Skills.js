@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lightning from '../ReactBits/Lightning';
 import BarProgress from '../ReactBits/BarProgress';
 import CircularProgress from '../ReactBits/CircularProgress';
 import SplitText from '../ReactBits/SplitText';
@@ -169,14 +168,6 @@ export default function Skills() {
   return (
     <section ref={sectionRef} className="skills-section" id="skills">
       <div className="skills-background">
-        <Lightning
-          hue={280}
-          xOffset={1.2}
-          speed={0.6}
-          intensity={1.7}
-          size={0.8}
-          useSharedTime={true}
-        />
       </div>
       <div className="skills-container">
         <div className="skills-title-wrapper">

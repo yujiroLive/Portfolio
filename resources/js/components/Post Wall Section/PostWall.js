@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import LightRays from '../ReactBits/LightRays';
+import { isMobile, isLowEndDevice } from '../../utils/performance';
 import './PostWall.scss';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -37,18 +37,25 @@ export default function PostWall() {
     fetchPosts();
   }, []);
 
+  const mobile = useMemo(() => isMobile(), []);
+  const lowEnd = useMemo(() => isLowEndDevice(), []);
+
   useEffect(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
     if (!section || !title) return;
 
+    // Optimize scroll trigger for mobile
+    const scrubValue = mobile ? 2 : 1;
+    
     // Title zoom in/out animation
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 1,
+        scrub: scrubValue,
+        refreshPriority: lowEnd ? -1 : 0,
       }
     });
 
@@ -147,17 +154,6 @@ export default function PostWall() {
     <section ref={sectionRef} className="postwall-section" id="postwall">
       <div className="postwall-background">
         <div className="postwall-lightrays-wrapper">
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#9d4edd"
-            raysSpeed={1.5}
-            lightSpread={0.8}
-            rayLength={1.2}
-            followMouse={true}
-            mouseInfluence={0.1}
-            noiseAmount={0.1}
-            distortion={0.05}
-          />
         </div>
       </div>
       

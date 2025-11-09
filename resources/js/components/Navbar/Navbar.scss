@@ -1,4 +1,9 @@
 .navbar {
+  @media (max-width: 768px) {
+    // Optimize navbar for mobile
+    transform: translateZ(0);
+    will-change: transform;
+  }
   position: fixed;
   top: 0;
   right: 0;

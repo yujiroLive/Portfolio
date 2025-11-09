@@ -8,6 +8,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Performance optimizations
+@import '../css/performance.css';
+
 // Components
 @import '../js/components/Portfolio';
 @import '../js/components/Hero Section/Hero';

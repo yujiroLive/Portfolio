@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import LiquidEther from "../ReactBits/LiquidEither";
 import DarkVeil from "../ReactBits/DarkVeil";
 import TextType from "../ReactBits/TextType";
 import ShinyText from "../ReactBits/ShinyText";
+import { isMobile, isLowEndDevice, getOptimalResolution } from "../../utils/performance";
 
-export default function Hero() {
+export default React.memo(function Hero() {
   const [showShinyText, setShowShinyText] = useState(false);
 
   const handleSentenceComplete = () => {
     setShowShinyText(true);
   };
+
+  // Optimize for mobile/performance
+  const mobile = useMemo(() => isMobile(), []);
+  const lowEnd = useMemo(() => isLowEndDevice(), []);
+  const liquidResolution = useMemo(() => getOptimalResolution(0.5), []);
+  const iterations = useMemo(() => lowEnd ? 16 : 32, [lowEnd]);
 
   return (
     <section className="hero-section">
@@ -19,7 +26,7 @@ export default function Hero() {
             hueShift={280}
             noiseIntensity={0}
             scanlineIntensity={0}
-            speed={0.5}
+            speed={mobile ? 0.3 : 0.4}
             scanlineFrequency={0}
             warpAmount={0}
             resolutionScale={1}
@@ -27,17 +34,17 @@ export default function Hero() {
         </div>
         <LiquidEther
           colors={['#3c096c', '#5a189a', '#7b2cbf', '#9d4edd']}
-          mouseForce={20}
-          cursorSize={100}
+          mouseForce={mobile ? 10 : 20}
+          cursorSize={mobile ? 50 : 100}
           isViscous={false}
           viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
+          iterationsViscous={iterations}
+          iterationsPoisson={iterations}
+          resolution={liquidResolution}
           isBounce={false}
           autoDemo={true}
           autoSpeed={0.5}
-          autoIntensity={2.2}
+          autoIntensity={lowEnd ? 1.5 : 2.2}
           takeoverDuration={0.25}
           autoResumeDelay={3000}
           autoRampDuration={0.6}
@@ -93,4 +100,4 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+});

@@ -1,5 +1,24 @@
 .portfolio {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  // Optimize scrolling performance
+  section {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  @media (max-width: 768px) {
+    // Reduce animations on mobile
+    * {
+      animation-duration: 0.3s !important;
+      transition-duration: 0.2s !important;
+    }
+  }
 }
 

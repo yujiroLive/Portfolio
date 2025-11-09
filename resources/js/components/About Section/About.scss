@@ -8,6 +8,16 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  will-change: transform;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+    min-height: auto;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 0.5rem;
+  }
 
   .about-background {
     position: absolute;

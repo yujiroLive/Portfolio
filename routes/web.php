@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
+// Healthcheck route for Railway
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok'], 200);
+});
+
 Route::get('/{any}', function () {
     return view('welcome'); // Make sure 'welcome.blade.php' exists
 })->where('any', '.*');

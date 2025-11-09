@@ -14,8 +14,10 @@ cmds = [
   "php artisan cache:clear || true",
   "php artisan view:clear || true",
   "php artisan route:clear || true",
+  "mkdir -p database || true",
   "touch database/database.sqlite || true",
-  "chmod 664 database/database.sqlite || true"
+  "chmod 664 database/database.sqlite || true",
+  "chmod +x start.sh || true"
 ]
 
 [start]

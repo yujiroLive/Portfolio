@@ -3,14 +3,35 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @php
+      try {
+        $csrfToken = csrf_token();
+      } catch (\Exception $e) {
+        $csrfToken = '';
+      }
+    @endphp
+    <meta name="csrf-token" content="{{ $csrfToken }}">
     <title>MY PORTFOLIO</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @php
+      try {
+        $cssPath = mix('css/app.css');
+      } catch (\Exception $e) {
+        $cssPath = '/css/app.css';
+      }
+    @endphp
+    <link rel="stylesheet" href="{{ $cssPath }}">
 
   </head>
   <body>
     <div id="root"></div>
     <!-- React App -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    @php
+      try {
+        $jsPath = mix('js/app.js');
+      } catch (\Exception $e) {
+        $jsPath = '/js/app.js';
+      }
+    @endphp
+    <script src="{{ $jsPath }}"></script>
   </body>
 </html>

@@ -9,19 +9,11 @@ services:
   # Laravel Web Application
   - type: web
     name: portfolio-laravel
+    env: docker
     plan: free
-    buildCommand: |
-      composer install --no-dev --optimize-autoloader --ignore-platform-reqs
-      npm install --legacy-peer-deps
-      npm run production
-      php artisan config:clear || true
-      php artisan cache:clear || true
-      php artisan view:clear || true
-      php artisan route:clear || true
-      mkdir -p database || true
-      touch database/database.sqlite || true
-      chmod 664 database/database.sqlite || true
-    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeploy: true
     envVars:
       # Application Settings
       - key: APP_ENV

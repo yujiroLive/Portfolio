@@ -24,7 +24,7 @@
 4. [ ] **CRITICAL:** Set **Environment** to **PHP** (not Node.js!)
 5. [ ] Configure:
    - Name: `portfolio-laravel`
-   - Build Command: `composer install --no-dev --optimize-autoloader --ignore-platform-reqs && npm install --legacy-peer-deps && npm run production`
+   - Build Command: `composer install --no-dev --optimize-autoloader --ignore-platform-reqs && npm install --legacy-peer-deps && npm run production && php artisan config:clear || true && php artisan cache:clear || true && php artisan view:clear || true && php artisan route:clear || true && mkdir -p database || true && touch database/database.sqlite || true && chmod 664 database/database.sqlite || true`
    - Start Command: `php artisan serve --host=0.0.0.0 --port=$PORT`
 6. [ ] Click **"Create Web Service"**
 

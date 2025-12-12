@@ -85,7 +85,7 @@ If you prefer to set up manually without using Blueprint:
    - **Runtime:** `PHP`
    - **Build Command:**
      ```
-     composer install --no-dev --optimize-autoloader --ignore-platform-reqs && npm install --legacy-peer-deps && npm run production && php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:clear
+     composer install --no-dev --optimize-autoloader --ignore-platform-reqs && npm install --legacy-peer-deps && npm run production && php artisan config:clear || true && php artisan cache:clear || true && php artisan view:clear || true && php artisan route:clear || true && mkdir -p database || true && touch database/database.sqlite || true && chmod 664 database/database.sqlite || true
      ```
    - **Start Command:**
      ```

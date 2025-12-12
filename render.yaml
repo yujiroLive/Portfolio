@@ -1,14 +1,30 @@
 services:
+  # PostgreSQL Database (Optional - uncomment if you want Render to create a database)
+  # - type: pgsql
+  #   name: portfolio-db
+  #   plan: free
+  #   databaseName: portfolio
+  #   user: portfolio_user
+
+  # Laravel Web Application
   - type: web
     name: portfolio-laravel
     runtime: php
     plan: free
     buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      npm install
+      composer install --no-dev --optimize-autoloader --ignore-platform-reqs
+      npm install --legacy-peer-deps
       npm run production
+      php artisan config:clear || true
+      php artisan cache:clear || true
+      php artisan view:clear || true
+      php artisan route:clear || true
+      mkdir -p database || true
+      touch database/database.sqlite || true
+      chmod 664 database/database.sqlite || true
     startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
     envVars:
+      # Application Settings
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
@@ -17,5 +33,41 @@ services:
         value: stderr
       - key: APP_KEY
         generateValue: true
-    healthCheckPath: /
+      - key: APP_NAME
+        value: Portfolio
+      - key: APP_URL
+        sync: false  # Set this manually in Render dashboard to your app URL
+      
+      # Database Configuration
+      # Option 1: Use SQLite (simpler, but not recommended for production)
+      # Note: SQLite data is ephemeral on Render free tier - data will be lost on redeploy
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: database/database.sqlite
+      
+      # Option 2: Use PostgreSQL (recommended - uncomment these and comment SQLite above)
+      # - key: DB_CONNECTION
+      #   value: pgsql
+      # - key: DB_HOST
+      #   fromDatabase:
+      #     name: portfolio-db
+      #     property: host
+      # - key: DB_PORT
+      #   fromDatabase:
+      #     name: portfolio-db
+      #     property: port
+      # - key: DB_DATABASE
+      #   fromDatabase:
+      #     name: portfolio-db
+      #     property: database
+      # - key: DB_USERNAME
+      #   fromDatabase:
+      #     name: portfolio-db
+      #     property: user
+      # - key: DB_PASSWORD
+      #   fromDatabase:
+      #     name: portfolio-db
+      #     property: password
+    healthCheckPath: /health
 

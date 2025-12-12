@@ -5,6 +5,13 @@ echo "=========================================="
 echo "Starting Laravel Application on Render"
 echo "=========================================="
 
+# Generate APP_KEY if it's missing or invalid
+# Laravel requires APP_KEY to start with "base64:" and be properly formatted (44 chars after base64:)
+if [ -z "$APP_KEY" ] || [[ ! "$APP_KEY" =~ ^base64: ]] || [ ${#APP_KEY} -lt 50 ]; then
+    echo "⚠️ APP_KEY is missing or invalid. Generating new APP_KEY..."
+    php artisan key:generate --force || echo "⚠️ Failed to generate APP_KEY, but continuing..."
+fi
+
 # Create database directory if it doesn't exist
 mkdir -p database || true
 

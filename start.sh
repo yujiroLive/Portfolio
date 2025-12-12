@@ -34,9 +34,30 @@ if [ ! -f database/database.sqlite ]; then
     echo "✓ Created database/database.sqlite"
 fi
 
-# Run migrations
+# Ensure database file is writable
+chmod 664 database/database.sqlite || true
+chown www-data:www-data database/database.sqlite || true
+
+# Show database configuration for debugging
+echo "Database configuration:"
+echo "  DB_CONNECTION: ${DB_CONNECTION:-not set}"
+echo "  DB_DATABASE: ${DB_DATABASE:-not set}"
+echo "  Database file exists: $([ -f database/database.sqlite ] && echo 'yes' || echo 'no')"
+echo "  Database file writable: $([ -w database/database.sqlite ] && echo 'yes' || echo 'no')"
+
+# Run migrations with detailed output
 echo "Running migrations..."
-php artisan migrate --force || echo "⚠️ Migrations failed, but continuing..."
+MIGRATION_OUTPUT=$(php artisan migrate --force 2>&1)
+MIGRATION_EXIT_CODE=$?
+
+if [ $MIGRATION_EXIT_CODE -eq 0 ]; then
+    echo "✓ Migrations completed successfully"
+else
+    echo "❌ Migrations failed with exit code: $MIGRATION_EXIT_CODE"
+    echo "Migration output:"
+    echo "$MIGRATION_OUTPUT"
+    echo "⚠️ Attempting to continue anyway, but database operations may fail..."
+fi
 
 # Clear caches
 echo "Clearing caches..."

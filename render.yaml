@@ -9,7 +9,6 @@ services:
   # Laravel Web Application
   - type: web
     name: portfolio-laravel
-    env: php
     plan: free
     buildCommand: |
       composer install --no-dev --optimize-autoloader --ignore-platform-reqs

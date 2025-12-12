@@ -147,7 +147,7 @@ export default function About() {
               </p>
               <div className="about-stats-row">
                 <div className="about-stat-item about-stat-main">
-                  <span className="stat-number">3</span>
+                  <span className="stat-number">4</span>
                   <span className="stat-label">PROJECT FINISHED</span>
                 </div>
                 <div className="about-stat-item about-stat-experience">

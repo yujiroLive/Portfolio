@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from "react";
-import LiquidEther from "../ReactBits/LiquidEither";
 import DarkVeil from "../ReactBits/DarkVeil";
 import TextType from "../ReactBits/TextType";
 import ShinyText from "../ReactBits/ShinyText";
-import { isMobile, isLowEndDevice, getOptimalResolution } from "../../utils/performance";
+import { isMobile } from "../../utils/performance";
 
 export default React.memo(function Hero() {
   const [showShinyText, setShowShinyText] = useState(false);
@@ -14,9 +13,6 @@ export default React.memo(function Hero() {
 
   // Optimize for mobile/performance
   const mobile = useMemo(() => isMobile(), []);
-  const lowEnd = useMemo(() => isLowEndDevice(), []);
-  const liquidResolution = useMemo(() => getOptimalResolution(0.5), []);
-  const iterations = useMemo(() => lowEnd ? 16 : 32, [lowEnd]);
 
   return (
     <section className="hero-section">
@@ -32,24 +28,6 @@ export default React.memo(function Hero() {
             resolutionScale={1}
           />
         </div>
-        <LiquidEther
-          colors={['#3c096c', '#5a189a', '#7b2cbf', '#9d4edd']}
-          mouseForce={mobile ? 10 : 20}
-          cursorSize={mobile ? 50 : 100}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={iterations}
-          iterationsPoisson={iterations}
-          resolution={liquidResolution}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={lowEnd ? 1.5 : 2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-          style={{ width: '100%', height: '100%', position: 'absolute' }}
-        />
       </div>
       <div className="hero-container">
         <div className="hero-content">

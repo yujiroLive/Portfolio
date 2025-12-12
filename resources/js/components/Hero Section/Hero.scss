@@ -5,13 +5,17 @@
   justify-content: center;
   padding: 2rem;
   position: relative;
-  background: linear-gradient(135deg, rgba(13, 0, 25, 0.95) 0%, rgba(26, 0, 51, 0.95) 50%, rgba(36, 0, 70, 0.95) 100%);
-  background-size: cover;
+  background: linear-gradient(180deg, rgba(13, 0, 25, 1) 0%, rgba(26, 0, 51, 1) 50%, rgba(36, 0, 70, 1) 100%);
+  background-size: 100% 100%;
+  background-attachment: local;
   background-position: center;
   background-repeat: no-repeat;
   color: #fff;
   overflow: hidden;
   will-change: transform;
+  margin: 0;
+  border: none;
+  outline: none;
   
   @media (max-width: 768px) {
     padding: 1rem;

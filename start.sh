@@ -9,7 +9,19 @@ echo "=========================================="
 # Laravel requires APP_KEY to start with "base64:" and be properly formatted (44 chars after base64:)
 if [ -z "$APP_KEY" ] || [[ ! "$APP_KEY" =~ ^base64: ]] || [ ${#APP_KEY} -lt 50 ]; then
     echo "⚠️ APP_KEY is missing or invalid. Generating new APP_KEY..."
-    php artisan key:generate --force || echo "⚠️ Failed to generate APP_KEY, but continuing..."
+    # Generate a proper Laravel encryption key (32 bytes = 256 bits, base64 encoded)
+    # This matches what Laravel's key:generate command does
+    NEW_KEY=$(php -r "echo 'base64:' . base64_encode(random_bytes(32));")
+    if [ -n "$NEW_KEY" ] && [[ "$NEW_KEY" =~ ^base64: ]]; then
+        export APP_KEY="$NEW_KEY"
+        # Also update .env file for consistency
+        if [ -f .env ]; then
+            sed -i "s|^APP_KEY=.*|APP_KEY=$NEW_KEY|" .env || true
+        fi
+        echo "✓ APP_KEY generated and set: ${NEW_KEY:0:20}..."
+    else
+        echo "⚠️ Failed to generate APP_KEY, but continuing..."
+    fi
 fi
 
 # Create database directory if it doesn't exist
